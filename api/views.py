@@ -29,9 +29,8 @@ class TipsSearchView(generics.ListAPIView):
 
     def get_queryset(self):
         q = self.request.GET.get('q', 'python')
-        # search query in tips
-        res = Tips.objects.filter(Q(tip__iregex=r'.*%s.*' %q)|Q(tags__name__iregex=r'.*%s.*' %q))
-        return [*{*res}]
+        # search query in tips and tag names
+        return Tips.objects.filter(Q(tip__iregex=r'.*%s.*' % q) | Q(tags__name__iregex=r'.*%s.*' % q)).distinct()
 
 
 class TagViewSet(viewsets.ModelViewSet):

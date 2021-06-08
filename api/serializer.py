@@ -2,7 +2,6 @@ from rest_framework import serializers
 from tips.models import Tips, Tags, Links
 import re
 
-
 link = re.compile(r"\bhttp(?:s)?:\S*\b")
 tag = re.compile(r"#\b.+?\b")
 
@@ -17,7 +16,7 @@ def jaccard_similarity(v1, v2, index=70):
     a = {*v1.split()}
     b = {*v2.split()}
     c = a.intersection(b)
-    d = (len(c)/(len(a)+len(b)-len(c))) * 100
+    d = (len(c) / (len(a) + len(b) - len(c))) * 100
     return d <= index
 
 
@@ -56,7 +55,6 @@ class TipsSerializer(serializers.ModelSerializer):
 
 
 class TagsSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Tags
         fields = ['name', 'tips_set']

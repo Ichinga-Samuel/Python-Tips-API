@@ -1,4 +1,3 @@
-import pprint
 import re
 import csv
 from django.core.management.base import BaseCommand, CommandError
@@ -12,10 +11,11 @@ tag = re.compile(r"#\b.+?\b")
 
 class Command(BaseCommand):
     def add_arguments(self, parser):
-        parser.add_argument('path', nargs='+', type=str)
+        pass
+        # parser.add_argument('path', nargs='+', type=str)
 
     def handle(self, *args, **options):
-        with open(options['path'][0], 'r', newline='', encoding='utf-8') as fh:
+        with open('Daily Python Tips.csv', 'r', newline='', encoding='utf-8') as fh:
             data = csv.reader(fh, delimiter=',')
             data = (i for i in data)
             for d in data:
@@ -36,8 +36,3 @@ class Command(BaseCommand):
                     tipmd.save()
                 except Exception as err:
                     self.stderr.write(err)
-
-
-
-
-

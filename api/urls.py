@@ -4,9 +4,9 @@ from rest_framework.routers import DefaultRouter
 
 
 router = DefaultRouter()
-router.register('tips', TipViewSet, basename='tips')
+router.register('api/tips', TipViewSet, basename='tips')
 
-router.register('tags', TagViewSet, basename='tags')
+router.register('api/tags', TagViewSet, basename='tags')
 
 app_name = 'api'
 
