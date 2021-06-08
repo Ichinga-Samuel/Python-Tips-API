@@ -1,0 +1,17 @@
+{% extends "rest_framework/base.html" %}
+
+
+{% block title %} Daily Python Tips {% endblock title %}
+{% block branding %}
+    <a class='navbar-brand' rel="nofollow" href='#'>Daily Python Tips</a>
+{% endblock %}
+
+{% block userlinks %}
+  {% if user.is_authenticated %}
+    <li class=""><a href="" class="">{{ user.username|upper }}</a></li>
+    <li><a href="{% url 'accounts:logout' %}" class="navbar-link">Logout</a></li>
+  {% else %}
+    <li><a href="{% url 'accounts:login' %}" class="navbar-link">Login</a></li>
+    <li><a href="{% url 'accounts:create_user' %}" class="navbar-link">Sign Up</a></li>
+  {% endif %}
+{% endblock userlinks %}
